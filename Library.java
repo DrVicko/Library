@@ -1,5 +1,6 @@
 package Library;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Library 
@@ -11,14 +12,21 @@ int accNumber, bookNumber, numberIssuedBooks = 0, selection = -1; String accName
 		
 		while (selection != 0)
 		{
-			System.out.println("\nWelcome to Vedran's public Library management system, please select desired option: "
+			try {
+				System.out.println("\nWelcome to Vedran's public Library management system, please select desired option: "
 				+ "\n1. Create new user Account. "
 				+ "\n2. Create new Book Account. "
 				+ "\n3. Issue Book to registered user."
 				+ "\n4. Return issued book from user"
 				+ "\n5. Print Account details."
 				+ "\n0. Exit \n"); 
-			selection  = input.nextInt(); 
+				selection  = input.nextInt(); 
+			}
+			catch (InputMismatchException ex)
+			{
+				System.out.println("Incorrect input, please enter integer in range from 0 to 5: ");
+				input.nextLine(); 
+			}
 			if (selection == 1)
 			{
 				System.out.println("Enter new user's Account number: "); 
@@ -108,11 +116,6 @@ int accNumber, bookNumber, numberIssuedBooks = 0, selection = -1; String accName
 			else if (selection == 0)
 			{
 				break; 
-			}
-			else
-			{
-				System.out.println("You have entered wrong selection, please try again: ");
-			    selection = input.nextInt(); 
 			}
 		}
 
